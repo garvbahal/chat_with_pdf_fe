@@ -1,249 +1,28 @@
-import { useNavigate } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/NavBar";
-
-const features = [
-    {
-        title: "Ask instead of scroll",
-        description:
-            "Skip endless page hunting. Ask direct questions and jump to what matters instantly.",
-        icon: "?",
-    },
-    {
-        title: "Works with all PDFs",
-        description:
-            "Upload reports, contracts, lecture notes, invoices, and handbooks in one place.",
-        icon: "[]",
-    },
-    {
-        title: "Complex stuff made simple",
-        description:
-            "Translate technical details into clear plain language with quick summaries.",
-        icon: "*",
-    },
-    {
-        title: "Privacy-focused",
-        description:
-            "Your files stay private and secure while you work, ask, and explore insights.",
-        icon: "#",
-    },
-];
-
-const useCases = [
-    { quote: '"Summarize this report into key points"', tag: "Summarize" },
-    { quote: '"Break down the trends in this document"', tag: "Analyze" },
-    { quote: '"Find troubleshooting steps in this manual"', tag: "Extract" },
-    { quote: '"Explain this diagram in simple terms"', tag: "Simplify" },
-    { quote: '"List important tasks and deadlines"', tag: "Organize" },
-    { quote: '"Identify key concepts from this chapter"', tag: "Study" },
-];
-
-const stats = [
-    { label: "Average answer time", value: "< 2 sec" },
-    { label: "Supported file types", value: "PDF, DOCX, JPG" },
-    { label: "Typical time saved", value: "70%" },
-];
-
-const steps = [
-    {
-        title: "Upload your file",
-        description: "Drag and drop your document or choose it manually.",
-    },
-    {
-        title: "Ask naturally",
-        description:
-            "Use plain language to ask for summaries, answers, or explanations.",
-    },
-    {
-        title: "Get instant clarity",
-        description: "Receive focused responses without scanning every page.",
-    },
-];
+import { HeroSection } from "../components/HeroSection";
+import { StatsSection } from "../components/StatsSection";
+import { FeatureSection } from "../components/FeatureSection";
+import { StepsSection } from "../components/StepsSection";
+import { UseCasesSection } from "../components/UseCasesSection";
+import { CTASection } from "../components/CTASection";
 
 export function HomePage() {
-    const navigate = useNavigate();
-
     return (
         <div className="min-h-screen bg-[#f6f6f8] text-slate-900">
             <Navbar />
 
             <main className="mx-auto max-w-[1240px] px-4 pb-24 pt-14 sm:px-6 lg:px-8">
-                <section className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-                    <div className="animate-fade-up">
-                        <h1 className="font-display text-5xl leading-[1.05] tracking-tight text-slate-800 sm:text-6xl lg:text-7xl">
-                            Chat with your PDFs instantly - Upload and start now
-                        </h1>
-                        <p className="mt-8 max-w-2xl text-xl leading-relaxed text-slate-700 sm:text-2xl">
-                            Ask questions, generate summaries, and understand
-                            long documents faster. Skip manual reading and get
-                            answers in seconds.
-                        </p>
-                    </div>
+                <HeroSection />
+                <StatsSection />
 
-                    <div className="animate-fade-up [animation-delay:120ms]">
-                        <article className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-                            <div className="pointer-events-none absolute -right-14 -top-14 h-44 w-44 rounded-full bg-indigo-100 blur-3xl" />
+                <FeatureSection />
 
-                            <div className="relative">
-                                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-700">
-                                    Secure Access
-                                </div>
+                <StepsSection />
 
-                                <h3 className="font-display mt-5 text-4xl leading-tight text-slate-800 sm:text-5xl">
-                                    Create your account to unlock PDF chat
-                                </h3>
-                                <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                                    To keep files private and conversation
-                                    history synced, upload and chat features are
-                                    available after login.
-                                </p>
+                <UseCasesSection />
 
-                                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                                        <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                                            Step 1
-                                        </p>
-                                        <p className="mt-1 text-base font-semibold text-slate-800">
-                                            Sign up in seconds
-                                        </p>
-                                    </div>
-                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                                        <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                                            Step 2
-                                        </p>
-                                        <p className="mt-1 text-base font-semibold text-slate-800">
-                                            Upload, ask, and explore
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="mt-6 flex flex-wrap gap-3">
-                                    <button
-                                        type="button"
-                                        onClick={() => navigate("/signup")}
-                                        className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-black"
-                                    >
-                                        Create Account
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => navigate("/login")}
-                                        className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
-                                    >
-                                        Already have an account
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-
-                <section className="mt-10 grid gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:grid-cols-3 sm:p-8">
-                    {stats.map((item) => (
-                        <article key={item.label}>
-                            <p className="font-display text-4xl text-slate-800">
-                                {item.value}
-                            </p>
-                            <p className="mt-2 text-base text-slate-600">
-                                {item.label}
-                            </p>
-                        </article>
-                    ))}
-                </section>
-
-                <section
-                    id="features"
-                    className="mt-24"
-                    aria-label="Feature highlights"
-                >
-                    <h2 className="font-display text-center text-5xl leading-tight text-slate-800 sm:text-6xl">
-                        Talk to your documents like they are human
-                    </h2>
-                    <div className="mt-12 grid gap-5 md:grid-cols-2">
-                        {features.map((feature) => (
-                            <article
-                                key={feature.title}
-                                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-                            >
-                                <div className="mb-5 flex h-20 w-full items-center justify-center rounded-2xl bg-slate-100 text-4xl text-slate-500">
-                                    {feature.icon}
-                                </div>
-                                <h3 className="text-2xl font-bold leading-tight text-slate-800 sm:text-3xl">
-                                    {feature.title}
-                                </h3>
-                                <p className="mt-3 text-lg leading-relaxed text-slate-600 sm:text-xl">
-                                    {feature.description}
-                                </p>
-                            </article>
-                        ))}
-                    </div>
-                </section>
-
-                <section className="mt-24">
-                    <h2 className="font-display text-center text-5xl leading-tight text-slate-800 sm:text-6xl">
-                        How it works
-                    </h2>
-                    <div className="mt-12 grid gap-5 md:grid-cols-3">
-                        {steps.map((step, index) => (
-                            <article
-                                key={step.title}
-                                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-                            >
-                                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-500">
-                                    Step {index + 1}
-                                </p>
-                                <h3 className="mt-3 text-2xl font-bold text-slate-800">
-                                    {step.title}
-                                </h3>
-                                <p className="mt-3 text-lg leading-relaxed text-slate-600">
-                                    {step.description}
-                                </p>
-                            </article>
-                        ))}
-                    </div>
-                </section>
-
-                <section id="pricing" className="mt-24">
-                    <h2 className="font-display text-center text-5xl leading-tight text-slate-800 sm:text-6xl">
-                        Real-life ways people use Chat to PDF
-                    </h2>
-                    <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        {useCases.map((item) => (
-                            <article
-                                key={item.quote}
-                                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-                            >
-                                <p className="text-lg leading-relaxed text-slate-700 sm:text-xl">
-                                    {item.quote}
-                                </p>
-                                <p className="mt-4 text-lg font-semibold text-slate-800 sm:text-xl">
-                                    {item.tag}
-                                </p>
-                            </article>
-                        ))}
-                    </div>
-                </section>
-
-                <section className="mt-24 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-                    <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
-                        <div>
-                            <h2 className="font-display text-4xl text-slate-800 sm:text-5xl">
-                                Ready to chat with your PDFs?
-                            </h2>
-                            <p className="mt-3 text-lg text-slate-600">
-                                Start free and bring clarity to dense documents
-                                in minutes.
-                            </p>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={() => navigate("/signup")}
-                            className="rounded-xl bg-slate-900 px-6 py-3 text-base font-semibold text-white transition hover:-translate-y-0.5 hover:bg-black"
-                        >
-                            Get Started
-                        </button>
-                    </div>
-                </section>
+                <CTASection />
             </main>
 
             <Footer />

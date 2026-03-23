@@ -13,18 +13,6 @@ export function Navbar() {
                 </Link>
 
                 <nav className="hidden items-center gap-8 md:flex">
-                    <a
-                        href="/#features"
-                        className="text-lg font-semibold text-slate-600 transition hover:text-slate-900"
-                    >
-                        Features
-                    </a>
-                    <a
-                        href="/#pricing"
-                        className="text-lg font-semibold text-slate-600 transition hover:text-slate-900"
-                    >
-                        Pricing
-                    </a>
                     <NavLink
                         to="/login"
                         className="text-lg font-semibold text-slate-600 transition hover:text-slate-900"
