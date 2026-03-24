@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/NavBar";
 import { OtpInput } from "../components/OTPInput";
@@ -16,6 +16,12 @@ export function OtpVerificationPage() {
     const email = location.state?.email as string;
 
     const otp = digits.join("");
+
+    useEffect(() => {
+        if (!email) {
+            navigate("/signup");
+        }
+    }, [email, navigate]);
 
     const mutation = useMutation<
         any,
@@ -35,8 +41,13 @@ export function OtpVerificationPage() {
 
         onError: (error) => {
             console.log(error.response?.data?.message);
+            const errorMessage =
+                error.response?.data?.message || "OTP verification failed";
+            toast.error(errorMessage);
         },
     });
+
+    
 
     const handleVerify = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

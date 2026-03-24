@@ -56,14 +56,14 @@ export const HeroSection = () => {
                             <button
                                 type="button"
                                 onClick={() => navigate("/signup")}
-                                className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-black"
+                                className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-black cursor-pointer"
                             >
                                 Create Account
                             </button>
                             <button
                                 type="button"
                                 onClick={() => navigate("/login")}
-                                className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                                className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 cursor-pointer"
                             >
                                 Already have an account
                             </button>

@@ -82,8 +82,13 @@ export function AuthForm({
 
                 <button
                     type="submit"
-                    className="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:-translate-y-px hover:bg-black"
                     disabled={isPending}
+                    className={`w-full rounded-xl px-4 py-2.5 text-sm font-medium text-white transition
+                    ${
+                        isPending
+                            ? "bg-slate-400 cursor-not-allowed"
+                            : "bg-slate-900 hover:-translate-y-px hover:bg-black"
+                    }`}
                 >
                     {isPending
                         ? "Processing..."
