@@ -12,7 +12,7 @@ export function HomePage() {
         <div className="min-h-screen bg-[#f6f6f8] text-slate-900">
             <Navbar />
 
-            <main className="mx-auto max-w-[1240px] px-4 pb-24 pt-14 sm:px-6 lg:px-8">
+            <main className="mx-auto max-w-310 px-4 pb-24 pt-14 sm:px-6 lg:px-8">
                 <HeroSection />
                 <StatsSection />
 
