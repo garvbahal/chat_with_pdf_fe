@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/NavBar";
-import { OtpInput } from "../components/OTPInput";
+import { OtpInput } from "../components/OtpInput";
 import { useMutation } from "@tanstack/react-query";
 import { verifyUser } from "../features/auth/authApi";
 import toast from "react-hot-toast";

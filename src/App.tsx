@@ -5,6 +5,7 @@ import { AuthPage } from "./pages/AuthPage";
 import { OtpVerificationPage } from "./pages/OTPVerificationPage";
 import { PublicRoute } from "./components/PublicRoute";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { DashboardPage } from "./pages/DashboardPage";
 
 function App() {
     return (
@@ -29,10 +30,14 @@ function App() {
                 />
                 <Route path="/verify-otp" element={<OtpVerificationPage />} />
 
-                {/* <Route
+                <Route
                     path="/dashboard"
-                    element={<ProtectedRoute></ProtectedRoute>}
-                /> */}
+                    element={
+                        <ProtectedRoute>
+                            <DashboardPage />
+                        </ProtectedRoute>
+                    }
+                />
             </Routes>
         </div>
     );
