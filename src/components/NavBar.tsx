@@ -62,18 +62,39 @@ export function Navbar() {
                 </nav>
 
                 <div className="flex items-center gap-3 md:hidden">
-                    <NavLink
-                        to="/login"
-                        className="text-sm font-semibold text-slate-700 transition hover:text-slate-900"
-                    >
-                        Login
-                    </NavLink>
-                    <NavLink
-                        to="/signup"
-                        className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm"
-                    >
-                        Get Started
-                    </NavLink>
+                    {!isLoggedIn ? (
+                        <>
+                            <NavLink
+                                to="/login"
+                                className="text-sm font-semibold text-slate-700 transition hover:text-slate-900"
+                            >
+                                Login
+                            </NavLink>
+                            <NavLink
+                                to="/signup"
+                                className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm"
+                            >
+                                Get Started
+                            </NavLink>
+                        </>
+                    ) : (
+                        <>
+                            <button
+                                className="text-sm font-semibold text-slate-700 transition hover:text-slate-900 cursor-pointer"
+                                onClick={() => {
+                                    dispatch(logout());
+                                }}
+                            >
+                                Logout
+                            </button>
+                            <NavLink
+                                to="/dashboard"
+                                className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800  cursor-pointer shadow-sm"
+                            >
+                                Dashboard
+                            </NavLink>
+                        </>
+                    )}
                 </div>
             </div>
         </header>

@@ -47,8 +47,6 @@ export function OtpVerificationPage() {
         },
     });
 
-    
-
     const handleVerify = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

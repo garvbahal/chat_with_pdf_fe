@@ -3,15 +3,36 @@ import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { AuthPage } from "./pages/AuthPage";
 import { OtpVerificationPage } from "./pages/OTPVerificationPage";
+import { PublicRoute } from "./components/PublicRoute";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
     return (
         <div>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<AuthPage mode="login" />} />
-                <Route path="/signup" element={<AuthPage mode="signup" />} />
+                <Route
+                    path="/login"
+                    element={
+                        <PublicRoute>
+                            <AuthPage mode="login" />
+                        </PublicRoute>
+                    }
+                />
+                <Route
+                    path="/signup"
+                    element={
+                        <PublicRoute>
+                            <AuthPage mode="signup" />
+                        </PublicRoute>
+                    }
+                />
                 <Route path="/verify-otp" element={<OtpVerificationPage />} />
+
+                {/* <Route
+                    path="/dashboard"
+                    element={<ProtectedRoute></ProtectedRoute>}
+                /> */}
             </Routes>
         </div>
     );
