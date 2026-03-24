@@ -28,3 +28,20 @@ export const signupUser = async ({
     });
     return res.data;
 };
+
+export const verifyUser = async ({
+    email,
+    otp,
+}: {
+    email: string;
+    otp: string;
+}): Promise<any> => {
+    const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND}/signup/verify`,
+        {
+            email,
+            otp,
+        },
+    );
+    return res.data;
+};

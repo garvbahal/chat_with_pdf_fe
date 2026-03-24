@@ -2,6 +2,11 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/NavBar";
 import { OtpInput } from "../components/OTPInput";
+import { useMutation } from "@tanstack/react-query";
+import { verifyUser } from "../features/auth/authApi";
+import toast from "react-hot-toast";
+import type { AxiosError } from "axios";
+import type { ErrorResponse } from "../features/auth/authTypes";
 
 export function OtpVerificationPage() {
     const [digits, setDigits] = useState(Array.from({ length: 6 }, () => ""));
@@ -12,11 +17,31 @@ export function OtpVerificationPage() {
 
     const otp = digits.join("");
 
+    const mutation = useMutation<
+        any,
+        AxiosError<ErrorResponse>,
+        { email: string; otp: string }
+    >({
+        mutationFn: (data) => {
+            console.log("Otp: ", data.otp);
+            console.log("Email : ", data.email);
+            return verifyUser(data);
+        },
+
+        onSuccess: (data) => {
+            toast.success("Signup Successfull");
+            navigate("/login");
+        },
+
+        onError: (error) => {
+            console.log(error.response?.data?.message);
+        },
+    });
+
     const handleVerify = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (otp.length === 6) {
-            navigate("/dashboard");
-        }
+
+        mutation.mutate({ email, otp });
     };
 
     return (
@@ -39,10 +64,12 @@ export function OtpVerificationPage() {
                         <OtpInput value={digits} onChange={setDigits} />
                         <button
                             type="submit"
-                            disabled={otp.length !== 6}
+                            disabled={otp.length !== 6 || mutation.isPending}
                             className="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:-translate-y-px hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
                         >
-                            Verify OTP
+                            {mutation.isPending
+                                ? "Verifying OTP..."
+                                : "Verify OTP"}
                         </button>
                     </form>
 

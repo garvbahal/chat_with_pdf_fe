@@ -11,6 +11,7 @@ import { setCredentials } from "../features/auth/authSlice";
 import toast from "react-hot-toast";
 import type { AxiosError } from "axios";
 import type { AuthResponse, ErrorResponse } from "../features/auth/authTypes";
+import type { AppDispatch } from "../app/store";
 
 interface AuthPageProps {
     mode: AuthMode;
@@ -20,7 +21,7 @@ export function AuthPage({ mode }: AuthPageProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const mutation = useMutation<
         AuthResponse,
@@ -35,6 +36,7 @@ export function AuthPage({ mode }: AuthPageProps) {
             if (mode === "login") {
                 toast.success("Logged in Successfully");
                 dispatch(setCredentials(data));
+
                 navigate("/dashboard");
             } else {
                 toast.success("OTP sent to your email");
