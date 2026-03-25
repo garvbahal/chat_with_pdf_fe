@@ -34,7 +34,14 @@ export function DashboardPage() {
       return;
     }
 
-    mutate(file);
+    mutate(file, {
+      onSuccess: () => {
+        toast.success("Pdf uploaded successfully");
+      },
+      onError: () => {
+        toast.error("Upload failed");
+      },
+    });
     event.target.value = "";
   };
 
@@ -96,7 +103,10 @@ export function DashboardPage() {
           ]);
         },
         onError: (error) => {
-          console.log(error);
+          const messageError =
+            error.response?.data?.message || "Failed to send Message";
+          toast.error(messageError);
+          setMessages((prev) => prev.slice(0, -1));
         },
       },
     );
@@ -140,11 +150,14 @@ export function DashboardPage() {
             </div>
           </div>
         </header>
-        {!activeChat && <DashboardNewPage addNewChat={addNewChat} />}
+        {!activeChat && (
+          <DashboardNewPage addNewChat={addNewChat} isLoading={isUploading} />
+        )}
         {activeChat && (
           <DashboardChat
             messages={messages}
-            isLoadingReply={isFetchingChats}
+            isFetchingChats={isFetchingChats}
+            isLoadingReply={isAsking}
             handleSend={handleSendMessage}
           />
         )}

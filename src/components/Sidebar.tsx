@@ -16,7 +16,6 @@ interface SidebarProps {
   onToggleCollapse: () => void;
   onCloseMobile: () => void;
   onNewChat: () => void;
-
   onSelectChat: (chatId: string) => void;
   onGoHome: () => void;
 }
@@ -64,7 +63,7 @@ export function Sidebar({
                 <button
                   type="button"
                   onClick={onNewChat}
-                  className="flex h-10 w-full items-center justify-center rounded-xl bg-slate-900 text-lg font-semibold text-white transition hover:bg-black"
+                  className="flex h-10 w-full items-center justify-center rounded-xl bg-slate-900 text-lg font-semibold text-white transition hover:bg-black cursor-pointer"
                   aria-label="Create new chat"
                   title="New chat"
                 >
@@ -73,7 +72,7 @@ export function Sidebar({
                 <button
                   type="button"
                   onClick={onToggleCollapse}
-                  className="mt-2 hidden h-10 w-full items-center justify-center rounded-xl border border-slate-300 text-base font-semibold text-slate-700 transition hover:bg-slate-100 lg:flex"
+                  className="mt-2 hidden h-10 w-full items-center justify-center rounded-xl border border-slate-300 text-base font-semibold text-slate-700 transition hover:bg-slate-100 lg:flex cursor-pointer"
                   aria-label="Expand sidebar"
                   title="Expand"
                 >
@@ -82,7 +81,7 @@ export function Sidebar({
                 <button
                   type="button"
                   onClick={onCloseMobile}
-                  className="mt-2 flex h-10 w-full items-center justify-center rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 lg:hidden"
+                  className="mt-2 flex h-10 w-full items-center justify-center rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 lg:hidden cursor-pointer"
                   aria-label="Close sidebar"
                   title="Close"
                 >
@@ -98,7 +97,7 @@ export function Sidebar({
                   onGoHome();
                   onCloseMobile();
                 }}
-                className="flex h-10 w-full items-center justify-center rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                className="flex h-10 w-full items-center justify-center rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 cursor-pointer"
                 aria-label="Go to homepage"
                 title="Home"
               >
@@ -110,7 +109,7 @@ export function Sidebar({
                   onLogout();
                   onCloseMobile();
                 }}
-                className="mt-2 flex h-10 w-full items-center justify-center rounded-xl border border-rose-200 bg-rose-50 text-sm font-semibold text-rose-700 transition hover:bg-rose-100"
+                className="mt-2 flex h-10 w-full items-center justify-center rounded-xl border border-rose-200 bg-rose-50 text-sm font-semibold text-rose-700 transition hover:bg-rose-100 cursor-pointer"
                 aria-label="Logout"
                 title="Logout"
               >
@@ -142,15 +141,15 @@ export function Sidebar({
               <button
                 type="button"
                 onClick={onNewChat}
-                className="flex-1 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white transition hover:bg-black"
-                aria-label="Create new chat"
+                className="flex-1 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white transition hover:bg-black cursor-pointer"
+                aria-label="Create new chat "
               >
                 New Chat
               </button>
               <button
                 type="button"
                 onClick={onToggleCollapse}
-                className="hidden rounded-xl border border-slate-300 px-2 py-2 text-slate-700 transition hover:bg-slate-100 lg:block"
+                className="hidden rounded-xl border border-slate-300 px-2 py-2 text-slate-700 transition hover:bg-slate-100 lg:block cursor-pointer"
                 aria-label="Toggle sidebar"
               >
                 {"<"}
@@ -158,7 +157,7 @@ export function Sidebar({
               <button
                 type="button"
                 onClick={onCloseMobile}
-                className="rounded-xl border border-slate-300 px-2 py-2 text-slate-700 transition hover:bg-slate-100 lg:hidden"
+                className="rounded-xl border border-slate-300 px-2 py-2 text-slate-700 transition hover:bg-slate-100 lg:hidden cursor-pointer"
                 aria-label="Close sidebar"
               >
                 x
@@ -178,7 +177,7 @@ export function Sidebar({
                     onSelectChat(chat._id);
                     onCloseMobile();
                   }}
-                  className={`w-full rounded-2xl border px-3 py-2 text-left text-sm transition ${
+                  className={`w-full rounded-2xl border px-3 py-2 text-left text-sm transition cursor-pointer ${
                     activeChatId === chat._id
                       ? "border-slate-900/20 bg-slate-900 text-white shadow-sm"
                       : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-100"
@@ -206,7 +205,7 @@ export function Sidebar({
                   onGoHome();
                   onCloseMobile();
                 }}
-                className="flex w-full items-center justify-center rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                className="flex w-full items-center justify-center rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 cursor-pointer"
               >
                 Home
               </button>
@@ -216,7 +215,7 @@ export function Sidebar({
                   onLogout();
                   onCloseMobile();
                 }}
-                className="flex w-full items-center justify-center rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-700 transition hover:bg-rose-100"
+                className="flex w-full items-center justify-center rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-700 transition hover:bg-rose-100 cursor-pointer"
               >
                 Logout
               </button>
