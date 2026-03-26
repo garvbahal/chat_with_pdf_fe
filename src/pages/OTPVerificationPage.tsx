@@ -67,11 +67,8 @@ export function OtpVerificationPage() {
     mutation.mutate({ email, otp });
   };
 
-  const {
-    mutate: resendOtpMutate,
-    isPending: isResendingOtp,
-    isError: resendingOtpError,
-  } = useResendOtpMutation();
+  const { mutate: resendOtpMutate, isPending: isResendingOtp } =
+    useResendOtpMutation();
 
   const handleResendOtp = () => {
     if (cooldown > 0) return;
