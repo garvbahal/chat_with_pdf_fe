@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 interface SidebarProps {
   chats: sideBarChat[];
+  isError: boolean;
   isLoading: boolean;
   activeChatId: string | null;
   collapsed: boolean;
@@ -23,6 +24,7 @@ interface SidebarProps {
 export function Sidebar({
   chats,
   activeChatId,
+  isError,
   collapsed,
   mobileOpen,
   onToggleCollapse,
@@ -37,6 +39,10 @@ export function Sidebar({
     dispatch(logout());
     toast.success("Log out Successfull");
     navigate("/login");
+  }
+
+  if (isError) {
+    return <div className="p-4 text-red-500">Failed to load chats</div>;
   }
   return (
     <>

@@ -42,7 +42,7 @@ export function FileUpload({
       <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-slate-100 blur-2xl" />
       <div
         className={`relative border border-dashed border-slate-300/90 p-8 text-center ${
-          isHero ? "rounded-2xl min-h-[380px]" : "rounded-2xl"
+          isHero ? "rounded-2xl min-h-95" : "rounded-2xl"
         }`}
       >
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-2xl shadow-sm">

@@ -6,6 +6,7 @@ interface DashboardChatProps {
   messages: Message[];
   isLoadingReply: boolean;
   isFetchingChats: boolean;
+  isFetchChatError: boolean;
   handleSend: (question: string) => void;
 }
 
@@ -13,8 +14,12 @@ export const DashboardChat = ({
   messages,
   isLoadingReply,
   isFetchingChats,
+  isFetchChatError,
   handleSend,
 }: DashboardChatProps) => {
+  if (isFetchChatError) {
+    return <div className="p-4 text-red-500">Failed to load chat</div>;
+  }
   return (
     <div className="flex min-h-0 flex-1 flex-col rounded-3xl border border-slate-200 bg-white shadow-sm">
       {isFetchingChats ? (

@@ -4,19 +4,23 @@ import {
   fetchChatHistory,
   fetchSideBarHistory,
 } from "./chatApi";
-import { type AskQuestionResponse } from "./chatTypes";
+import {
+  type sideBarChatResponse,
+  type AskQuestionResponse,
+  type ActiveChatResponse,
+} from "./chatTypes";
 import { AxiosError } from "axios";
 import type { ErrorResponse } from "../auth/authTypes";
 
 export const useSideBarHistory = () => {
-  return useQuery({
+  return useQuery<sideBarChatResponse, AxiosError<ErrorResponse>>({
     queryKey: ["sidebarHistory"],
     queryFn: fetchSideBarHistory,
   });
 };
 
 export const useFetchChatHistory = (pdfId: string | undefined) => {
-  return useQuery({
+  return useQuery<ActiveChatResponse, AxiosError<ErrorResponse>>({
     queryKey: ["chatHistory", pdfId],
     queryFn: () => fetchChatHistory(pdfId),
     enabled: !!pdfId,

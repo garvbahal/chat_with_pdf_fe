@@ -26,6 +26,7 @@ export function DashboardPage() {
 
   const addNewChat = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    event.target.value = "";
 
     if (!file) return;
 
@@ -34,22 +35,36 @@ export function DashboardPage() {
       return;
     }
 
-    uploadPdfMutate(file, {
-      onSuccess: () => {
-        toast.success("Pdf uploaded successfully");
+    uploadPdfMutate(
+      { file },
+      {
+        onSuccess: (data) => {
+          setActiveChatId(data.chatId);
+          toast.success("Pdf uploaded successfully");
+        },
+        onError: (error) => {
+          const errorMessage = error.response?.data?.message || "Upload failed";
+
+          toast.error(errorMessage);
+        },
       },
-      onError: () => {
-        toast.error("Upload failed");
-      },
-    });
-    event.target.value = "";
+    );
   };
 
   const {
     data: sideBarData,
     isPending: isLoadingChats,
-    error,
+    isError: sideBarHistoryError,
+    error: sideBarError,
   } = useSideBarHistory();
+
+  useEffect(() => {
+    if (sideBarHistoryError && sideBarError) {
+      const errorMessage =
+        sideBarError.response?.data?.message || "Failed to load chats";
+      toast.error(errorMessage);
+    }
+  }, [sideBarHistoryError, sideBarError]);
 
   const activeChat = sideBarData?.allChats.find(
     (chat) => chat._id === activeChatId,
@@ -60,8 +75,17 @@ export function DashboardPage() {
   const {
     data: chatHistoryData,
     isPending: isFetchingChats,
-    isError,
+    isError: isFetchChatError,
+    error: fetchChatError,
   } = useFetchChatHistory(pdfId);
+
+  useEffect(() => {
+    if (isFetchChatError && fetchChatError) {
+      const errorMessage =
+        fetchChatError.response?.data?.message || "Error while fetching chat";
+      toast.error(errorMessage);
+    }
+  }, [isFetchChatError, fetchChatError]);
 
   const [messages, setMessages] = useState<Message[]>([]);
 
@@ -118,8 +142,9 @@ export function DashboardPage() {
       <div className="pointer-events-none absolute -right-20 top-24 h-64 w-64 rounded-full bg-indigo-100/70 blur-3xl" />
 
       <Sidebar
-        chats={sideBarData?.allChats || []}
+        chats={sideBarHistoryError ? [] : sideBarData?.allChats || []}
         isLoading={isLoadingChats}
+        isError={sideBarHistoryError}
         activeChatId={activeChatId}
         collapsed={collapsed}
         mobileOpen={mobileOpen}
@@ -158,6 +183,7 @@ export function DashboardPage() {
             messages={messages}
             isFetchingChats={isFetchingChats}
             isLoadingReply={isAsking}
+            isFetchChatError={isFetchChatError}
             handleSend={handleSendMessage}
           />
         )}
