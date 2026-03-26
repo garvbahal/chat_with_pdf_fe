@@ -25,6 +25,7 @@ export function Sidebar({
   chats,
   activeChatId,
   isError,
+  isLoading,
   collapsed,
   mobileOpen,
   onToggleCollapse,
@@ -175,33 +176,43 @@ export function Sidebar({
             </div>
 
             <div className="scrollbar-thin flex-1 space-y-2 overflow-y-auto pr-1">
-              {chats.map((chat) => (
-                <button
-                  type="button"
-                  key={chat._id}
-                  onClick={() => {
-                    onSelectChat(chat._id);
-                    onCloseMobile();
-                  }}
-                  className={`w-full rounded-2xl border px-3 py-2 text-left text-sm transition cursor-pointer ${
-                    activeChatId === chat._id
-                      ? "border-slate-900/20 bg-slate-900 text-white shadow-sm"
-                      : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-100"
-                  }`}
-                  title={chat.title}
-                >
-                  <p className="truncate font-semibold">{chat.title}</p>
-                  <p
-                    className={`mt-1 text-xs ${
+              {isLoading ? (
+                <div className="flex h-full items-center justify-center text-sm text-slate-500">
+                  Loading chats...
+                </div>
+              ) : chats.length === 0 ? (
+                <div className="flex h-full items-center justify-center text-sm text-slate-400">
+                  No chats yet
+                </div>
+              ) : (
+                chats.map((chat) => (
+                  <button
+                    type="button"
+                    key={chat._id}
+                    onClick={() => {
+                      onSelectChat(chat._id);
+                      onCloseMobile();
+                    }}
+                    className={`w-full rounded-2xl border px-3 py-2 text-left text-sm transition cursor-pointer ${
                       activeChatId === chat._id
-                        ? "text-slate-200"
-                        : "text-slate-500"
+                        ? "border-slate-900/20 bg-slate-900 text-white shadow-sm"
+                        : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-100"
                     }`}
+                    title={chat.title}
                   >
-                    {new Date(chat.updatedAt).toLocaleString()}
-                  </p>
-                </button>
-              ))}
+                    <p className="truncate font-semibold">{chat.title}</p>
+                    <p
+                      className={`mt-1 text-xs ${
+                        activeChatId === chat._id
+                          ? "text-slate-200"
+                          : "text-slate-500"
+                      }`}
+                    >
+                      {new Date(chat.updatedAt).toLocaleString()}
+                    </p>
+                  </button>
+                ))
+              )}
             </div>
 
             <div className="mt-3 space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm">

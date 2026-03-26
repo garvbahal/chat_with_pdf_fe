@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { type RootState } from "../app/store";
 import { type AppDispatch } from "../app/store";
 import { logout } from "../features/auth/authSlice";
+import toast from "react-hot-toast";
 
 export function Navbar() {
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state: RootState) => {
     if (state.auth.token) {
       return true;
@@ -47,6 +49,8 @@ export function Navbar() {
                 className="text-lg font-semibold text-slate-600 transition hover:text-slate-900 cursor-pointer"
                 onClick={() => {
                   dispatch(logout());
+                  toast.success("Logout Successfull");
+                  navigate("/login");
                 }}
               >
                 Logout
