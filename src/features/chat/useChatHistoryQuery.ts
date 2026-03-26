@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   askQuestionApi,
   fetchChatHistory,
@@ -28,11 +28,15 @@ export const useFetchChatHistory = (pdfId: string | undefined) => {
 };
 
 export const askQuestionMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation<
     AskQuestionResponse,
     AxiosError<ErrorResponse>,
     { question: string; pdfId: string }
   >({
     mutationFn: ({ question, pdfId }) => askQuestionApi(question, pdfId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["sidebarHistory"] });
+    },
   });
 };

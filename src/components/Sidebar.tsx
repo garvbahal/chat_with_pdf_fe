@@ -133,7 +133,7 @@ export function Sidebar({
           <div className="flex h-full w-full flex-col p-3">
             <div className="mb-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
               <div className="flex items-center justify-between gap-2">
-                <p className="font-display text-xl text-slate-800">ChatPDF</p>
+                <p className="font-display text-xl text-slate-800">AskDocs</p>
                 <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
                   Live
                 </span>
@@ -198,7 +198,7 @@ export function Sidebar({
                         : "text-slate-500"
                     }`}
                   >
-                    {chat.updatedAt}
+                    {new Date(chat.updatedAt).toLocaleString()}
                   </p>
                 </button>
               ))}

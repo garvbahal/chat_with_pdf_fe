@@ -93,7 +93,7 @@ export function DashboardPage() {
     if (chatHistoryData?.chatResponse.messages) {
       setMessages(chatHistoryData.chatResponse.messages);
     }
-  }, [chatHistoryData, activeChat]);
+  }, [chatHistoryData]);
 
   const { mutate: askQuestion, isPending: isAsking } = askQuestionMutation();
 

@@ -25,7 +25,7 @@ export function ChatMessageBubble({ message }: ChatMessageBubbleProps) {
       >
         <p>{message.content}</p>
         <time className="mt-1 block text-[11px] opacity-70">
-          {message.createdAt}
+          {new Date(message.createdAt).toLocaleString()}
         </time>
       </article>
       {isUser ? (

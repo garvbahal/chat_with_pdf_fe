@@ -48,7 +48,7 @@ export function OtpVerificationPage() {
       return verifyUser(data);
     },
 
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Signup Successfull");
       navigate("/login");
     },
