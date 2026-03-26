@@ -44,7 +44,6 @@ export function AuthPage({ mode }: AuthPageProps) {
             }
         },
         onError: (error) => {
-            console.log(error);
             const message = error?.response?.data?.message || "Login failed";
             toast.error(message);
         },

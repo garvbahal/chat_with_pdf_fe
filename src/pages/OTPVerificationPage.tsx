@@ -43,8 +43,6 @@ export function OtpVerificationPage() {
     { email: string; otp: string }
   >({
     mutationFn: (data) => {
-      console.log("Otp: ", data.otp);
-      console.log("Email : ", data.email);
       return verifyUser(data);
     },
 
@@ -54,7 +52,6 @@ export function OtpVerificationPage() {
     },
 
     onError: (error) => {
-      console.log(error.response?.data?.message);
       const errorMessage =
         error.response?.data?.message || "OTP verification failed";
       toast.error(errorMessage);

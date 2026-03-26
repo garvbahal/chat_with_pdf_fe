@@ -175,10 +175,10 @@ export function DashboardPage() {
             </div>
           </div>
         </header>
-        {!activeChat && (
+        {!activeChatId && (
           <DashboardNewPage addNewChat={addNewChat} isLoading={isUploading} />
         )}
-        {activeChat && (
+        {activeChatId && (
           <DashboardChat
             messages={messages}
             isFetchingChats={isFetchingChats}
