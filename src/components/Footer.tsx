@@ -40,17 +40,33 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="font-display text-2xl text-slate-800">Account</h4>
+          <h4 className="font-display text-2xl text-slate-800">Connect</h4>
           <ul className="mt-4 space-y-2 text-slate-600">
             <li>
-              <Link to="/login" className="transition hover:text-slate-900">
-                Login
-              </Link>
+              <a
+                href="mailto:garvbahal75@gmail.com"
+                className="transition hover:text-slate-900"
+              >
+                Email
+              </a>
             </li>
             <li>
-              <Link to="/signup" className="transition hover:text-slate-900">
-                Get Started
-              </Link>
+              <a
+                href="https://www.linkedin.com/in/garv-bahal/"
+                target="_blank"
+                className="transition hover:text-slate-900"
+              >
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/garvbahal"
+                target="_blank"
+                className="transition hover:text-slate-900"
+              >
+                GitHub
+              </a>
             </li>
           </ul>
         </div>
