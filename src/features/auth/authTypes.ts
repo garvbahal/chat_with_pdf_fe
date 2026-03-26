@@ -1,5 +1,5 @@
 export type AuthResponse = {
-    token: string;
+  token: string;
 };
 
 // export type signupResponse = {
@@ -7,5 +7,10 @@ export type AuthResponse = {
 // };
 
 export type ErrorResponse = {
-    message: string;
+  message: string;
+};
+
+export type resendOtpResponse = {
+  success: boolean;
+  message: string;
 };

@@ -22,7 +22,7 @@ export function DashboardPage() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const { mutate, isPending: isUploading } = useUploadPdf();
+  const { mutate: uploadPdfMutate, isPending: isUploading } = useUploadPdf();
 
   const addNewChat = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -34,7 +34,7 @@ export function DashboardPage() {
       return;
     }
 
-    mutate(file, {
+    uploadPdfMutate(file, {
       onSuccess: () => {
         toast.success("Pdf uploaded successfully");
       },
