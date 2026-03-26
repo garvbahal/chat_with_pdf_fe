@@ -87,6 +87,8 @@ export function Navbar() {
                 className="text-sm font-semibold text-slate-700 transition hover:text-slate-900 cursor-pointer"
                 onClick={() => {
                   dispatch(logout());
+                  toast.success("Logout Successfull");
+                  navigate("/login");
                 }}
               >
                 Logout
